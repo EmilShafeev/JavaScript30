@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Key Detection</title>
-    <script type="text/javascript" src="./cornify.js"></script>
-    <link rel="icon" href="https://fav.farm/🔥" />
-  </head>
-  <body>
-    <script></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Key Detection</title>
+        <script type="text/javascript" src="./cornify.js"></script>
+        <link rel="icon" href="https://fav.farm/🔥" />
+    </head>
+    <body>
+        <script>
+            let keys = []
+            const secret = 'qwerty'
+
+            window.addEventListener('keydown', (e) => {
+                keys.push(e.key)
+                if (keys.length > secret.length) {
+                    keys = keys.slice(keys.length - secret.length)
+                }
+                console.log(keys)
+                if (keys.join('') === secret) console.log('WIN')
+            })
+        </script>
+    </body>
 </html>
