@@ -1,47 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Console Tricks!</title>
+        <link rel="icon" href="https://fav.farm/🔥" />
+    </head>
+    <body>
+        <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+        <script>
+            const dogs = [
+                { name: 'Snickers', age: 2 },
+                { name: 'hugo', age: 8 },
+            ]
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+            function makeGreen() {
+                const p = document.querySelector('p')
+                p.style.color = '#BADA55'
+                p.style.fontSize = '50px'
+            }
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+            // Regular
+            console.log(123)
 
-    // Regular
+            // Interpolated
+            const e = 3
+            console.log(`${e}`)
 
-    // Interpolated
+            // Styled
+            console.log('%c KEK', 'font-size: 20px')
 
-    // Styled
+            // warning!
+            console.warn('warn')
 
-    // warning!
+            // Error :|
+            console.error('error')
 
-    // Error :|
+            // Info
+            console.info('info')
 
-    // Info
+            // Testing
+            console.assert(1 === 3, 'wrong')
 
-    // Testing
+            // clearing
+            //console.clear()
 
-    // clearing
+            // Viewing DOM Elements
+            const el = document.getElementsByTagName('body')[0]
+            console.log(el)
+            console.dir(el)
 
-    // Viewing DOM Elements
+            // Grouping together
+            // console.table([
+            //     { a: 1, b: 2 },
+            //     { a: 1, b: 3, c: 88 },
+            // ])
+            console.group('group')
+            console.log(el)
+            console.dir(el)
+            console.groupEnd()
 
-    // Grouping together
+            // counting
+            console.count('ss')
+            console.count('ss')
+            console.count('ss')
+            console.count('RRR')
+            console.count('ss')
+            console.count('ss')
+            console.count('ss')
 
-    // counting
-
-    // timing
-
-  </script>
-</body>
+            // timing
+            console.time('as')
+            console.timeEnd('as')
+        </script>
+    </body>
 </html>
