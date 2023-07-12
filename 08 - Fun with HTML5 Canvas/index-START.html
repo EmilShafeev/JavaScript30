@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>HTML5 Canvas</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
-<canvas id="draw" width="800" height="800"></canvas>
-<script>
-</script>
+    <head>
+        <meta charset="UTF-8" />
+        <title>HTML5 Canvas</title>
+        <link rel="icon" href="https://fav.farm/🔥" />
+    </head>
+    <body>
+        <input type="color" name="" id="drawColor" /><br />
+        <label for="maxWidth">maxWidth</label>
+        <input
+            type="number"
+            name="maxWidth"
+            id="maxWidth"
+            placeholder="MAX width"
+        /><br />
 
-<style>
-  html, body {
-    margin: 0;
-  }
-</style>
+        <canvas id="draw" width="1300px" height="700px"></canvas>
+        <script src="code.js"></script>
 
-</body>
+        <style>
+            html,
+            body {
+                margin: 0;
+            }
+            canvas {
+                border: 1px solid red;
+            }
+        </style>
+    </body>
 </html>
