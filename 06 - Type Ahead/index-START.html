@@ -1,23 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Type Ahead 👀</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="https://fav.farm/🔥" />
+    </head>
+    <body>
+        <form class="search-form">
+            <input type="text" class="search" placeholder="City or State" />
+            <ul class="suggestions">
+                <li>
+                    <span>Filter <span class="hl"> for a </span> city</span>
+                </li>
+                <li>or a state</li>
+            </ul>
+        </form>
+        <script>
+            const endpoint =
+                'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'
 
-  <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
-    <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
-    </ul>
-  </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+            const input = document.getElementsByTagName('input')[0]
+            const ul = document.getElementsByTagName('ul')[0]
 
-</script>
-</body>
+            const addHl = (str, substr) => {
+                return str.replaceAll(
+                    new RegExp(substr, 'ig'),
+                    `<span class='hl'>${substr}</span>`
+                )
+            }
+
+            const setNewLines = (value) => {
+                ul.innerHTML = ''
+                fetch(endpoint)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        for (const item of data) {
+                            if (
+                                item.state.toLowerCase().includes(value) ||
+                                item.city.toLowerCase().includes(value)
+                            ) {
+                                const li = ul.appendChild(
+                                    document.createElement('li')
+                                )
+
+                                li.innerHTML = `<span>${addHl(
+                                    item.city,
+                                    value
+                                )}, ${addHl(item.state, value)}</span>`
+                            }
+                        }
+                    })
+            }
+
+            input.addEventListener('input', (e) =>
+                setNewLines(e.target.value.toLowerCase())
+            )
+        </script>
+    </body>
 </html>
