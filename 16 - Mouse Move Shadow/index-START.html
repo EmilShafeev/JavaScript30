@@ -1,41 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Mouse Shadow</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Mouse Shadow</title>
+        <link rel="icon" href="https://fav.farm/🔥" />
+    </head>
+    <body>
+        <div class="hero">
+            <h1 contenteditable>🔥WOAH!</h1>
+        </div>
 
-  <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
-  </div>
+        <style>
+            html {
+                color: black;
+                font-family: sans-serif;
+            }
 
-  <style>
-  html {
-    color: black;
-    font-family: sans-serif;
-  }
+            body {
+                margin: 0;
+            }
 
-  body {
-    margin: 0;
-  }
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+            }
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-  }
+            h1 {
+                --text-shadow1: 10px 10px;
+                --text-shadow2: 10px 10px;
+                --text-shadow3: 10px 10px;
+                --text-shadow4: 10px 10px;
 
-  h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
-    font-size: 100px;
-  }
-  </style>
+                text-shadow: var(--text-shadow1) 0 rgb(250, 0, 0),
+                    var(--text-shadow2) 0 rgb(21, 249, 0),
+                    var(--text-shadow3) 0 rgb(15, 3, 239),
+                    var(--text-shadow4) 0 rgb(255, 242, 0);
+                font-size: 100px;
+            }
+        </style>
 
-<script>
-</script>
-</body>
+        <script>
+            const elem = document.querySelector('h1')
+            const elemRect = elem.getBoundingClientRect()
+
+            const vars = [
+                '--text-shadow1',
+                '--text-shadow2',
+                '--text-shadow3',
+                '--text-shadow4',
+            ]
+
+            const calcOffset = (clientX, clientY) => ({
+                x: (clientX - (elemRect.left + elemRect.right) / 2) / 2,
+                y: (clientY - (elemRect.top + elemRect.bottom) / 2) / 2,
+            })
+
+            document.addEventListener('mousemove', (e) => {
+                const offset = calcOffset(e.clientX, e.clientY)
+                elem.style.setProperty(vars[0], `${offset.x}px ${offset.y}px`)
+                elem.style.setProperty(vars[1], `${offset.x}px ${-offset.y}px`)
+                elem.style.setProperty(vars[2], `${offset.y}px ${offset.x}px`)
+                elem.style.setProperty(vars[3], `${-offset.y}px ${-offset.x}px`)
+            })
+        </script>
+    </body>
 </html>
